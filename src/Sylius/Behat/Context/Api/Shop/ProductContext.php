@@ -45,6 +45,84 @@ final class ProductContext implements Context
     }
 
     /**
+     * @When I browse products from taxon :taxon
+     */
+    public function iBrowseProductsFromTaxon(TaxonInterface $taxon): void
+    {
+        $this->client->index();
+        $this->client->addFilter('productTaxons.taxon.code', $taxon->getCode());
+        $this->client->filter();
+    }
+
+    /**
+     * @When I clear filter
+     */
+    public function iClearFilter(): void
+    {
+        $this->client->clearParameters();
+        $this->client->filter();
+    }
+
+    /**
+     * @When I search for products with name :name
+     */
+    public function iSearchForProductsWithName(string $name)
+    {
+        $this->client->addFilter('translations.name', $name);
+        $this->client->filter();
+    }
+
+    /**
+     * @Then I should see the product :name
+     */
+    public function iShouldSeeTheProduct(string $name): void
+    {
+        Assert::true($this->hasProductWithName(
+            $this->responseChecker->getCollection($this->client->getLastResponse()),
+            $name
+        ));
+    }
+
+    /**
+     * @Then I should not see the product :name
+     */
+    public function iShouldNotSeeTheProduct(string $name): void
+    {
+        Assert::false($this->hasProductWithName(
+            $this->responseChecker->getCollection($this->client->getLastResponse()),
+            $name
+        ));
+    }
+
+    /**
+     * @Then /^I should see the product price ("[^"]+")$/
+     */
+    public function iShouldSeeTheProductPrice(int $price): void
+    {
+        Assert::true(
+            $this->hasProductWithPrice(
+                [$this->responseChecker->getResponseContent($this->client->getLastResponse())],
+                $price,
+            )
+        );
+    }
+
+    /**
+     * @Then /^I should see the (product "[^"]+") with price ("[^"]+")$/
+     */
+    public function iShouldSeeTheProductWithPrice(ProductInterface $product, int $price): void
+    {
+        Assert::true(
+            $this->hasProductWithPrice(
+                $this->responseChecker->getCollection($this->client->getLastResponse()),
+                $price,
+                $product->getCode()
+            ),
+            sprintf("There is no product with %s code and %s price", $product->getCode(), $price)
+        );
+    }
+
+    /**
      * @Then I should see the product name :name
      */
     public function iShouldSeeProductName(string $name): void
@@ -79,5 +157,40 @@ final class ProductContext implements Context
                 $variantName
             )
         );
+    }
+
+    private function hasProductWithPrice(array $products, int $price, ?string $productCode = null): bool
+    {
+        foreach ($products as $product) {
+            if ($productCode !== null && $product['code'] !== $productCode) {
+                continue;
+            }
+
+            foreach ($product['variants'] as $variantIri) {
+                $this->client->executeCustomRequest(Request::custom($variantIri, HttpRequest::METHOD_GET));
+
+                /** @var int $variantPrice */
+                $variantPrice = $this->responseChecker->getValue($this->client->getLastResponse(), "price");
+
+                if ($price === $variantPrice) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private function hasProductWithName(array $products, string $name): bool
+    {
+        foreach ($products as $product) {
+            foreach ($product['translations'] as $translation) {
+                if ($translation['name'] === $name) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

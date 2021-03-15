@@ -43,7 +43,8 @@
         "knplabs/knp-gaufrette-bundle": "^0.7",
         "knplabs/knp-menu": "^3.1",
         "knplabs/knp-menu-bundle": "^3.0",
-        "lexik/jwt-authentication-bundle": "^2.11",
+        "laminas/laminas-stdlib": "^3.3.1",
+        "lexik/jwt-authentication-bundle": "^2.6",
         "liip/imagine-bundle": "^2.3",
         "payum/payum": "^1.6",
         "payum/payum-bundle": "^2.4",
@@ -112,9 +113,7 @@
         "webmozart/assert": "^1.9",
         "willdurand/hateoas": "^3.0",
         "willdurand/hateoas-bundle": "^2.0",
-        "winzou/state-machine-bundle": "^0.5",
-        "zendframework/zend-hydrator": "^2.4",
-        "zendframework/zend-stdlib": "^3.2"
+        "winzou/state-machine-bundle": "^0.5"
     },
     "replace": {
         "sylius/addressing": "self.version",
@@ -184,8 +183,8 @@
         "mikey179/vfsstream": "^1.6",
         "mockery/mockery": "^1.4",
         "phpspec/phpspec": "^7.0",
-        "phpstan/phpstan": "0.12.68",
-        "phpstan/phpstan-doctrine": "0.12.30",
+        "phpstan/phpstan": "0.12.81",
+        "phpstan/phpstan-doctrine": "0.12.33",
         "phpunit/phpunit": "^8.5",
         "psalm/plugin-mockery": "0.7.0",
         "psr/event-dispatcher": "^1.0",
