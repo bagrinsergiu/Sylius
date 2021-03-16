@@ -104,6 +104,7 @@
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
             <group>shop:cart:read</group>
+            <group>shop:order:read</group>
             <group>shop:order:account:read</group>
         </attribute>
     </class>

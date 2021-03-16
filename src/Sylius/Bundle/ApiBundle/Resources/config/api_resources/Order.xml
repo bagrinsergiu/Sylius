@@ -24,7 +24,7 @@
                 <attribute name="method">GET</attribute>
                 <attribute name="path">admin/orders</attribute>
                 <attribute name="normalization_context">
-                    <attribute name="groups">admin:order:all</attribute>
+                    <attribute name="groups">admin:order:read</attribute>
                 </attribute>
             </collectionOperation>
 
