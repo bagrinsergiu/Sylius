@@ -32,6 +32,7 @@
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
             <group>shop:cart:read</group>
+            <group>shop:order:read</group>
             <group>shop:order:account:read</group>
         </attribute>
         <attribute name="lastName">
@@ -41,6 +42,7 @@
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
             <group>shop:cart:read</group>
+            <group>shop:order:read</group>
             <group>shop:order:account:read</group>
         </attribute>
         <attribute name="phoneNumber">
@@ -60,6 +62,7 @@
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
             <group>shop:cart:read</group>
+            <group>shop:order:read</group>
             <group>shop:order:account:read</group>
         </attribute>
         <attribute name="street">
@@ -69,6 +72,7 @@
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
             <group>shop:cart:read</group>
+            <group>shop:order:read</group>
             <group>shop:order:account:read</group>
         </attribute>
         <attribute name="postcode">
@@ -78,6 +82,7 @@
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
             <group>shop:cart:read</group>
+            <group>shop:order:read</group>
             <group>shop:order:account:read</group>
         </attribute>
         <attribute name="countryCode">
@@ -87,6 +92,7 @@
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
             <group>shop:cart:read</group>
+            <group>shop:order:read</group>
             <group>shop:order:account:read</group>
         </attribute>
         <attribute name="provinceCode">

@@ -141,7 +141,7 @@ final class RegistrationContext implements Context
      * @Then I should be notified that new account has been successfully created
      */
     public function iShouldBeNotifiedThatNewAccountHasBeenSuccessfullyCreated(): void
-    {
+    {dd($this->client->getResponse());
         Assert::same($this->client->getResponse()->getStatusCode(), 204);
     }
 

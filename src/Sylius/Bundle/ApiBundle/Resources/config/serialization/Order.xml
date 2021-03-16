@@ -74,11 +74,13 @@
         <attribute name="paymentState">
             <group>admin:order:read</group>
             <group>admin:order:all</group>
+            <group>shop:order:read</group>
         </attribute>
 
         <attribute name="shippingState">
             <group>admin:order:read</group>
             <group>admin:order:all</group>
+            <group>shop:order:read</group>
         </attribute>
 
         <attribute name="total">
@@ -117,6 +119,7 @@
 
         <attribute name="items">
             <group>admin:order:read</group>
+            <group>shop:order:read</group>
             <group>shop:cart:read</group>
             <group>shop:order:account:read</group>
         </attribute>
@@ -148,13 +151,14 @@
 
         <attribute name="shippingAddress">
             <group>admin:order:read</group>
-            <group>shop:cart:read</group>
             <group>shop:order:read</group>
+            <group>shop:cart:read</group>
             <group>shop:order:account:read</group>
         </attribute>
 
         <attribute name="billingAddress">
             <group>admin:order:read</group>
+            <group>shop:order:read</group>
             <group>shop:cart:read</group>
             <group>shop:order:account:read</group>
         </attribute>
