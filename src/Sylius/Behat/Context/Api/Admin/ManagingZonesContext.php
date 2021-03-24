@@ -311,7 +311,7 @@ final class ManagingZonesContext implements Context
      * @Then I should still see the zone named :name in the list
      */
     public function iShouldSeeTheZoneNamedInTheList(string $name): void
-    {dd($this->client->index(), 'name', $name);
+    {
         Assert::true(
             $this->responseChecker->hasItemWithValue($this->client->index(), 'name', $name),
             sprintf('There is no zone with name "%s"', $name)
