@@ -122,5 +122,6 @@
         <property name="variants" readable="true"/>
         <property name="enabled" readable="true"/>
         <property name="attributes" readable="false" writable="false"/>
+        <property name="averageRating" readable="true" />
     </resource>
 </resources>
