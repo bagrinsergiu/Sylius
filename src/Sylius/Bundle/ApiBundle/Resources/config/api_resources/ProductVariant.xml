@@ -113,7 +113,7 @@
         <property name="code" identifier="true" required="true" />
         <property name="product" />
         <property name="channelPricings">
-            <attribute name="openapi_context">
+            <!-- <attribute name="openapi_context">
                 <attribute name="type">array</attribute>
                 <attribute name="example">
                     <attribute name="FASHION_WEB">
@@ -122,7 +122,45 @@
                         <attribute name="originalPrice">0</attribute>
                     </attribute>
                 </attribute>
+            </attribute> -->
+
+            <attribute name="openapi_context">
+                <attribute name="type">object</attribute>
+                <attribute name="additionalProperties">
+                    <attribute name="type">object</attribute>
+                    <attribute name="properties">
+                        <attribute name="channelCode">
+                            <attribute name="type">string</attribute>
+                        </attribute>
+                        <attribute name="price">
+                            <attribute name="type">integer</attribute>
+                        </attribute>
+                        <attribute name="originalPrice">
+                            <attribute name="type">integer</attribute>
+                        </attribute>
+                    </attribute>
+                </attribute>
             </attribute>
+
+            <!-- <attribute name="openapi_context">
+                <attribute name="type">object</attribute>
+                <attribute name="properties">
+                    <attribute name="FASHION_WEB">
+                        <attribute name="type">object</attribute>
+                        <attribute name="properties">
+                            <attribute name="channelCode">
+                                <attribute name="type">string</attribute>
+                            </attribute>
+                            <attribute name="price">
+                                <attribute name="type">integer</attribute>
+                            </attribute>
+                            <attribute name="originalPrice">
+                                <attribute name="type">integer</attribute>
+                            </attribute>
+                        </attribute>
+                    </attribute>
+                </attribute>
+            </attribute> -->
         </property>
         <property name="tracked" />
         <property name="onHand" />
