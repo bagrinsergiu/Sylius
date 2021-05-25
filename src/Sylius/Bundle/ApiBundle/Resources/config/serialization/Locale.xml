@@ -23,5 +23,8 @@
             <group>admin:locale:read</group>
             <group>admin:locale:create</group>
         </attribute>
+        <attribute name="name">
+            <group>admin:locale:read</group>
+        </attribute>
     </class>
 </serializer>
