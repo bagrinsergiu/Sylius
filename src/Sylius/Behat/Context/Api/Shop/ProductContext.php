@@ -162,6 +162,21 @@ final class ProductContext implements Context
     }
 
     /**
+     * @Then I should see the product :product with short description :shortDescription
+     */
+    public function iShouldSeeTheProductWithShortDescription(ProductInterface $product, string $shortDescription): void
+    {
+        Assert::true(
+            $this->hasProductWithNameAndShortDescription(
+                $this->responseChecker->getCollection($this->client->getLastResponse()),
+                $product->getName(),
+                $shortDescription
+            ),
+            sprintf('There is no product with %s name and %s short description', $product->getName(), $shortDescription)
+        );
+    }
+
+    /**
      * @When I browse products
      */
     public function iViewProducts(): void
@@ -265,6 +280,34 @@ final class ProductContext implements Context
         }
     }
 
+    /**
+     * @Then /^the product price should be ("[^"]+")$/
+     */
+    public function theProductPriceShouldBe(int $price): void
+    {
+        $defaultVariantResponse = $this->client->showByIri(
+            $this->responseChecker->getValue($this->client->getLastResponse(), 'defaultVariant')
+        );
+
+        Assert::same($this->responseChecker->getValue($defaultVariantResponse, 'price'), $price);
+    }
+
+    /**
+     * @Then I should see the product description :description
+     */
+    public function iShouldSeeTheProductDescription(string $description): void
+    {
+        Assert::same(
+            $this->responseChecker->getValue($this->client->getLastResponse(), 'description'),
+            $description
+        );
+
+        Assert::same(
+            $this->responseChecker->getValue($this->client->getLastResponse(), 'translations')['en_US']['description'],
+            $description
+        );
+    }
+
     private function hasProductWithPrice(array $products, int $price, ?string $productCode = null): bool
     {
         foreach ($products as $product) {
@@ -292,6 +335,19 @@ final class ProductContext implements Context
         foreach ($products as $product) {
             foreach ($product['translations'] as $translation) {
                 if ($translation['name'] === $name) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private function hasProductWithNameAndShortDescription(array $products, string $name, string $shortDescription): bool
+    {
+        foreach ($products as $product) {
+            foreach ($product['translations'] as $translation) {
+                if ($translation['name'] === $name && $translation['shortDescription'] === $shortDescription) {
                     return true;
                 }
             }
