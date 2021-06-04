@@ -65,9 +65,10 @@ final class ProductVariantNormalizerSpec extends ObjectBehavior
 
         $channelContext->getChannel()->willReturn($channel);
         $pricesCalculator->calculate($variant, ['channel' => $channel])->willReturn(1000);
+        $pricesCalculator->calculateOriginal($variant, ['channel' => $channel])->willReturn(1200);
         $availabilityChecker->isStockAvailable($variant)->willReturn(true);
 
-        $this->normalize($variant, null, [])->shouldReturn(['price' => 1000, 'inStock' => true]);
+        $this->normalize($variant, null, [])->shouldReturn(['price' => 1000, 'originalPrice' => 1200, 'inStock' => true]);
     }
 
     function it_throws_an_exception_if_the_normalizer_has_been_already_called(
