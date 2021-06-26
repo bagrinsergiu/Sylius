@@ -7,19 +7,22 @@
             "@id": "\/api\/v2\/shop\/countries\/US",
             "@type": "Country",
             "code": "US",
-            "provinces": []
+            "provinces": [],
+            "name": "United States"
         },
         {
             "@id": "\/api\/v2\/shop\/countries\/FR",
             "@type": "Country",
             "code": "FR",
-            "provinces": []
+            "provinces": [],
+            "name": "France"
         },
         {
             "@id": "\/api\/v2\/shop\/countries\/DE",
             "@type": "Country",
             "code": "DE",
-            "provinces": []
+            "provinces": [],
+            "name": "Germany"
         }
     ],
     "hydra:totalItems": 3
