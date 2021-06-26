@@ -47,3 +47,31 @@
         }
     ]
     ```
+
+1. Constructor of `Core/OrderProcessing/OrderTaxesProcessor.php` has been changed where new service implementing
+   `TaxationAddressResolverInterface` will become mandatory from Sylius version 2.0:
+
+    ```diff
+        public function __construct(
+            ZoneProviderInterface $defaultTaxZoneProvider,
+            ZoneMatcherInterface $zoneMatcher,
+            PrioritizedServiceRegistryInterface $strategyRegistry,
+    +       ?TaxationAddressResolverInterface $taxationAddressResolver = null
+        ) {
+            ...
+        }
+    ```
+
+1. Constructor of `ApiBundle/Serializer/ProductVariantNormalizer.php` has been extended with `SectionProviderInterface`
+    argument:
+
+    ```diff
+        public function __construct(
+            ProductVariantPricesCalculatorInterface $priceCalculator,
+            ChannelContextInterface $channelContext,
+            AvailabilityCheckerInterface $availabilityChecker,
+    +       SectionProviderInterface $uriBasedSectionContext
+        ) {
+            ...
+        }
+    ```

@@ -15,16 +15,6 @@ Entities
 
 .. include:: /cookbook/entities/map.rst.inc
 
-Api
----
-
-.. toctree::
-    :hidden:
-
-    api/api
-
-.. include:: /cookbook/api/map.rst.inc
-
 Shop
 ----
 
@@ -55,6 +45,7 @@ Payments
     payments/custom-payment-gateway
     payments/customizing-credit-memo
     payments/refund-process
+    payments/custom-field-on-refund-payment
 
 .. include:: /cookbook/payments/map.rst.inc
 

@@ -420,6 +420,17 @@ final class CheckoutContext implements Context
     }
 
     /**
+     * @Then I should be notified that the order should be addressed first
+     */
+    public function iShouldBeNotifiedThatTheOrderShouldBeAddressedFirst(): void
+    {
+        Assert::true($this->isViolationWithMessageInResponse(
+            $this->ordersClient->getLastResponse(),
+            'Order should be addressed first.'
+        ));
+    }
+
+    /**
      * @Then I should be informed that shipping method with code :code does not exist
      */
     public function iShouldBeInformedThatShippingMethodWithCodeDoesNotExist(string $code): void
