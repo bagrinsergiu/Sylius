@@ -6,7 +6,7 @@
 >
     <class name="Sylius\Component\Core\Model\ProductImage">
         <attribute name="id">
-git             <group>admin:product_image:read</group>
+            <group>admin:product_image:read</group>
             <group>shop:product_image:read</group>
             <group>admin:product:read</group>
             <group>shop:product:read</group>
