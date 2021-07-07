@@ -1,5 +1,94 @@
 # CHANGELOG FOR `1.10.X`
 
+## v1.10.0 (2021-06-28)
+
+#### Details
+
+No additional changes apart from the ones reported in pre-releases.
+
+## v1.10.0-RC.1 (2021-06-28)
+
+#### TL;DR
+
+**This is a security release!**
+
+Fixes the follwing vulnerability:
+
+- [List of order ids, number, items total and token value exposed for unauthorized uses via new API](https://github.com/Sylius/Sylius/security/advisories/GHSA-rpxh-vg2x-526v)
+
+#### Details
+
+- [#12596](https://github.com/Sylius/Sylius/issues/12596) Country api resource shouldn't have created/updated at ([@kayue](https://github.com/kayue))
+- [#12618](https://github.com/Sylius/Sylius/issues/12618) [Docs] Fix cookbook for custom entity ([@Tomanhez](https://github.com/Tomanhez))
+- [#12682](https://github.com/Sylius/Sylius/issues/12682) Use Symfony 5.2.* instead of ^5.2 for GitHub Actions ([@pamil](https://github.com/pamil))
+- [#12683](https://github.com/Sylius/Sylius/issues/12683) Improve the UPGRADE file for Sylius v1.10 ([@pamil](https://github.com/pamil))
+- [#12686](https://github.com/Sylius/Sylius/issues/12686) [DOCS] Cookbook for customizing refund process ([@arti0090](https://github.com/arti0090))
+- [#12687](https://github.com/Sylius/Sylius/issues/12687) Fix typo and imporve error message ([@dantleech](https://github.com/dantleech))
+- [#12690](https://github.com/Sylius/Sylius/issues/12690) [Doctrine] Fix problem with explicitly defining entity managers ([@GSadee](https://github.com/GSadee))
+- [#12698](https://github.com/Sylius/Sylius/issues/12698) Fix the build with Symfony 5.3 ([@pamil](https://github.com/pamil))
+- [#12699](https://github.com/Sylius/Sylius/issues/12699) [Documentation] Update templates directory in Themes doc ([@CoderMaggie](https://github.com/CoderMaggie))
+- [#12701](https://github.com/Sylius/Sylius/issues/12701) Delay Sylius 1.10 release by two weeks ([@pamil](https://github.com/pamil))
+- [#12702](https://github.com/Sylius/Sylius/issues/12702) [Documentation] Fix Refund Process Cookbook ([@GSadee](https://github.com/GSadee))
+- [#12706](https://github.com/Sylius/Sylius/issues/12706) [Documentation] Tweaks on the refunds process cookbook ([@CoderMaggie](https://github.com/CoderMaggie), [@GSadee](https://github.com/GSadee))
+- [#12707](https://github.com/Sylius/Sylius/issues/12707) [Documentation] Fix links in the refunds process cookbook ([@GSadee](https://github.com/GSadee))
+- [#12709](https://github.com/Sylius/Sylius/issues/12709) Fix the build after upgrade to Symfony 5.3 in GitHub Actions ([@pamil](https://github.com/pamil))
+- [#12715](https://github.com/Sylius/Sylius/issues/12715) [Dql] Add parameter instead of hardcoding it in where statement ([@SirDomin](https://github.com/SirDomin))
+- [#12720](https://github.com/Sylius/Sylius/issues/12720) [DQL] Change hardcoded enabled value to parameter in where statements ([@GSadee](https://github.com/GSadee))
+- [#12725](https://github.com/Sylius/Sylius/issues/12725) Bring back testing for Symfony ^5.2 ([@pamil](https://github.com/pamil))
+- [#12726](https://github.com/Sylius/Sylius/issues/12726) [DQL] Change hardcoded tracked value to parameter in where statements ([@lchrusciel](https://github.com/lchrusciel))
+- [#12731](https://github.com/Sylius/Sylius/issues/12731) Add cookbook with how to change tax address ([@arti0090](https://github.com/arti0090))
+- [#12732](https://github.com/Sylius/Sylius/issues/12732) Remove unnecessary note about conflict with api-platform/core ([@GSadee](https://github.com/GSadee))
+- [#12733](https://github.com/Sylius/Sylius/issues/12733) Bring back conflict to symfony/polyfill-mbstring ([@GSadee](https://github.com/GSadee))
+- [#12734](https://github.com/Sylius/Sylius/issues/12734) Revert "Bring back conflict to symfony/polyfill-mbstring" ([@GSadee](https://github.com/GSadee))
+- [#12736](https://github.com/Sylius/Sylius/issues/12736) Force Symfony 5.2.* on GitHub Actions ([@pamil](https://github.com/pamil))
+- [#12747](https://github.com/Sylius/Sylius/issues/12747) [Docs] Move AdminApi docs to AdminApiBundle ([@Tomanhez](https://github.com/Tomanhez))
+- [#12748](https://github.com/Sylius/Sylius/issues/12748) [Documentation][Refund] Add cookbook about refund customization with improvements ([@AdamKasp](https://github.com/AdamKasp), [@GSadee](https://github.com/GSadee))
+
+## v1.10.0-BETA.1 (2021-05-27)
+
+#### Details
+
+- [#12578](https://github.com/Sylius/Sylius/issues/12578) [API][Shop] Remove channel pricing from shop ([@lchrusciel](https://github.com/lchrusciel), [@SirDomin](https://github.com/SirDomin))
+- [#12602](https://github.com/Sylius/Sylius/issues/12602) [Refactor] Unification of buses ([@SirDomin](https://github.com/SirDomin))
+- [#12619](https://github.com/Sylius/Sylius/issues/12619) [Docs] Add docs for custom entity with access per admin channel ([@Tomanhez](https://github.com/Tomanhez), [@GSadee](https://github.com/GSadee))
+- [#12621](https://github.com/Sylius/Sylius/issues/12621) [API] sorting product by position in taxon ([@AdamKasp](https://github.com/AdamKasp))
+- [#12623](https://github.com/Sylius/Sylius/issues/12623) [API] Revert locale to localeCode in pickup cart ([@arti0090](https://github.com/arti0090))
+- [#12626](https://github.com/Sylius/Sylius/issues/12626) [Api] Adding product to cart with proper product price per channel ([@Tomanhez](https://github.com/Tomanhez), [@AdamKasp](https://github.com/AdamKasp), [@GSadee](https://github.com/GSadee))
+- [#12627](https://github.com/Sylius/Sylius/issues/12627) [DOCS] API custom logic example ([@arti0090](https://github.com/arti0090), [@GSadee](https://github.com/GSadee))
+- [#12628](https://github.com/Sylius/Sylius/issues/12628) [API] Conflict with symfony/property-info due to problem with wrong namespaces of some translation entities ([@GSadee](https://github.com/GSadee))
+- [#12632](https://github.com/Sylius/Sylius/issues/12632) [Docs] Mention localhost exposure for easier Facebook login ([@Zales0123](https://github.com/Zales0123))
+- [#12633](https://github.com/Sylius/Sylius/issues/12633) [Bug] [Temporary solution] Comment out 2 behats steps for checking notifications ([@SirDomin](https://github.com/SirDomin))
+- [#12634](https://github.com/Sylius/Sylius/issues/12634) [DOCS] Change response codeblocks to be more clarified ([@arti0090](https://github.com/arti0090))
+- [#12639](https://github.com/Sylius/Sylius/issues/12639) [API]Add inStock serialization to productVariant ([@arti0090](https://github.com/arti0090))
+- [#12640](https://github.com/Sylius/Sylius/issues/12640) [DOCS] Modify serialization fields in api ([@arti0090](https://github.com/arti0090))
+- [#12642](https://github.com/Sylius/Sylius/issues/12642) [Documentation] Fix Customizing API doc headers inconsistency ([@CoderMaggie](https://github.com/CoderMaggie))
+- [#12643](https://github.com/Sylius/Sylius/issues/12643) [README] Fix link to plugin list ([@lchrusciel](https://github.com/lchrusciel))
+- [#12644](https://github.com/Sylius/Sylius/issues/12644) [README] Supported versions update ([@lchrusciel](https://github.com/lchrusciel))
+- [#12647](https://github.com/Sylius/Sylius/issues/12647) Improve API Platform customisation guide ([@pamil](https://github.com/pamil))
+- [#12648](https://github.com/Sylius/Sylius/issues/12648) [Api] Prevent product more than in stock ([@Tomanhez](https://github.com/Tomanhez))
+- [#12649](https://github.com/Sylius/Sylius/issues/12649) [API][Product] Expose default variant on product show and index ([@GSadee](https://github.com/GSadee))
+- [#12650](https://github.com/Sylius/Sylius/issues/12650) [API][ProductVariant] Fix product variant response by using proper normalizer ([@GSadee](https://github.com/GSadee))
+- [#12651](https://github.com/Sylius/Sylius/issues/12651) [API][ProductVariant] Add additional specs for product variant normalizer ([@GSadee](https://github.com/GSadee))
+- [#12652](https://github.com/Sylius/Sylius/issues/12652) [API][Product] Add additional specs for product normalizer ([@GSadee](https://github.com/GSadee))
+- [#12653](https://github.com/Sylius/Sylius/issues/12653) [API] Add missing inStock field to swagger ([@arti0090](https://github.com/arti0090))
+- [#12654](https://github.com/Sylius/Sylius/issues/12654) [Api] Check stock sufficient while cart update ([@Tomanhez](https://github.com/Tomanhez))
+- [#12655](https://github.com/Sylius/Sylius/issues/12655) [Documentation][Plus] Minor improvements in cookbook for accessing to entities by channel admins ([@GSadee](https://github.com/GSadee))
+- [#12657](https://github.com/Sylius/Sylius/issues/12657) [API] Adding inexistent payment method ([@arti0090](https://github.com/arti0090))
+- [#12658](https://github.com/Sylius/Sylius/issues/12658) add validation on complete order ([@AdamKasp](https://github.com/AdamKasp))
+- [#12660](https://github.com/Sylius/Sylius/issues/12660) [API] Preventing from choosing unavailable shipping method during checkout ([@GSadee](https://github.com/GSadee))
+- [#12661](https://github.com/Sylius/Sylius/issues/12661) [API] Add itemsTotal field to order resource ([@arti0090](https://github.com/arti0090))
+- [#12663](https://github.com/Sylius/Sylius/issues/12663) [Api] Customer see description of a product ([@Tomanhez](https://github.com/Tomanhez))
+- [#12665](https://github.com/Sylius/Sylius/issues/12665) Add Validation to chose payment method ([@AdamKasp](https://github.com/AdamKasp))
+- [#12666](https://github.com/Sylius/Sylius/issues/12666) [API] Prevent from using inexistent shipping method ([@pamil](https://github.com/pamil))
+- [#12667](https://github.com/Sylius/Sylius/issues/12667) [Documentation] Customizing CreditMemo entity by adding a new field ([@GSadee](https://github.com/GSadee))
+- [#12668](https://github.com/Sylius/Sylius/issues/12668) [API] write order email send test in api bundle ([@pamil](https://github.com/pamil), [@SirDomin](https://github.com/SirDomin))
+- [#12669](https://github.com/Sylius/Sylius/issues/12669) [API] short description on product index ([@AdamKasp](https://github.com/AdamKasp))
+- [#12671](https://github.com/Sylius/Sylius/issues/12671) [Api] Tests adding incorrect county code to address order ([@Tomanhez](https://github.com/Tomanhez))
+- [#12672](https://github.com/Sylius/Sylius/issues/12672) Fix for build of Sylius Standard ([@arti0090](https://github.com/arti0090))
+- [#12673](https://github.com/Sylius/Sylius/issues/12673) [API][Address] Remove account prefix from addresses endpoints ([@GSadee](https://github.com/GSadee))
+- [#12674](https://github.com/Sylius/Sylius/issues/12674) [Minor] Return shop user after registration command to improve extendibility ([@lchrusciel](https://github.com/lchrusciel))
+- [#12675](https://github.com/Sylius/Sylius/issues/12675) Add missing return value ([@AdamKasp](https://github.com/AdamKasp))
+
 ## v1.10.0-ALPHA.1 (2021-05-10)
 
 #### TL;DR

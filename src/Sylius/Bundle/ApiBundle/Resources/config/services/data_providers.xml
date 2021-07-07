@@ -16,12 +16,6 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
 >
     <services>
-        <service id="sylius.api.collection_data_provider.address" class="Sylius\Bundle\ApiBundle\DataProvider\AddressCollectionDataProvider">
-            <argument type="service" id="sylius.repository.address" />
-            <argument type="service" id="sylius.api.context.user" />
-            <tag name="api_platform.collection_data_provider" priority="10" />
-        </service>
-
         <service id="sylius.api.item_data_provider.address" class="Sylius\Bundle\ApiBundle\DataProvider\AddressItemDataProvider">
             <argument type="service" id="sylius.repository.address" />
             <argument type="service" id="sylius.api.context.user" />
@@ -64,6 +58,12 @@
             <tag name="api_platform.collection_data_provider" priority="10" />
         </service>
 
+        <service id="sylius.api.collection_data_provider.locale" class="Sylius\Bundle\ApiBundle\DataProvider\LocaleCollectionDataProvider">
+            <argument type="service" id="sylius.repository.locale" />
+            <argument type="service" id="sylius.api.context.user" />
+            <tag name="api_platform.collection_data_provider" priority="10" />
+        </service>
+
         <service id="sylius.api.collection_data_provider.product" class="Sylius\Bundle\ApiBundle\DataProvider\ProductItemDataProvider">
             <argument type="service" id="sylius.repository.product" />
             <argument type="service" id="sylius.api.context.user" />
@@ -87,8 +87,6 @@
             <argument type="service" id="sylius.repository.order" />
             <argument type="service" id="sylius.repository.shipment" />
             <argument type="service" id="sylius.shipping_methods_resolver" />
-            <argument type="service" id="sylius.registry.shipping_calculator" />
-            <argument type="service" id="sylius.api.factory.cart_shipping_method" />
             <tag name="api_platform.subresource_data_provider" priority="10" />
         </service>
 

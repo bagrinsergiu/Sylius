@@ -223,6 +223,14 @@ final class CartContext implements Context
     }
 
     /**
+     * @When I update my cart
+     */
+    public function iUpdateMyCart(): void
+    {
+        // Intentionally left blank
+    }
+
+    /**
      * @When /^I check details of my (cart)$/
      */
     public function iCheckDetailsOfMyCart(string $tokenValue): void
@@ -232,6 +240,7 @@ final class CartContext implements Context
 
     /**
      * @Then /^I should be notified that (this product) does not have sufficient stock$/
+     * @Then /^I should be notified that (this product) cannot be updated$/
      */
     public function iShouldBeNotifiedThatThisProductDoesNotHaveSufficientStock(ProductInterface $product): void
     {
@@ -243,6 +252,7 @@ final class CartContext implements Context
 
     /**
      * @Then /^I should not be notified that (this product) does not have sufficient stock$/
+     * @Then /^I should not be notified that (this product) cannot be updated$/
      */
     public function iShouldNotBeNotifiedThatThisProductDoesNotHaveSufficientStock(ProductInterface $product): void
     {
@@ -265,8 +275,11 @@ final class CartContext implements Context
      */
     public function myCartLocaleShouldBe(LocaleInterface $locale): void
     {
-        Assert::same($this->responseChecker->getValue(
-            $this->cartsClient->getLastResponse(), 'localeCode'),
+        Assert::same(
+            $this->responseChecker->getValue(
+            $this->cartsClient->getLastResponse(),
+            'localeCode'
+        ),
             $locale->getCode()
         );
     }
@@ -517,7 +530,19 @@ final class CartContext implements Context
     }
 
     /**
+     * @Then /^my cart should have ("[^"]+") items total$/
+     */
+    public function myCartShouldHaveItemsTotal(int $itemsTotal): void
+    {
+        Assert::same(
+            $this->responseChecker->getValue($this->cartsClient->getLastResponse(), 'itemsTotal'),
+            $itemsTotal
+        );
+    }
+
+    /**
      * @Then /^my cart should have (\d+) items of (product "([^"]+)")$/
+     * @Then /^my cart should have quantity of (\d+) items of (product "([^"]+)")$/
      */
     public function myCartShouldHaveItems(int $quantity, ProductInterface $product): void
     {
@@ -536,7 +561,8 @@ final class CartContext implements Context
 
         Assert::same(
             $this->responseChecker->getValue($response, 'shippingTotal'),
-            $shippingTotal);
+            $shippingTotal
+        );
     }
 
     /**

@@ -1,0 +1,28 @@
+{
+    "@context":"\/api\/v2\/contexts\/ProductVariant",
+    "@id":"\/api\/v2\/admin\/product-variants\/MUG",
+    "@type":"ProductVariant",
+    "onHand":"@integer@",
+    "tracked":false,
+    "weight":null,
+    "width":null,
+    "height":null,
+    "depth":null,
+    "shippingRequired":true,
+    "id":"@integer@",
+    "code":"MUG",
+    "product":"\/api\/v2\/admin\/products\/MUG_SW",
+    "optionValues":[],
+    "enabled":true,
+    "translations":
+        {
+            "en_US":
+                {
+                    "@id":"\/api\/v2\/admin\/product-variant-translations\/@integer@",
+                    "@type":"ProductVariantTranslation",
+                    "id":"@integer@",
+                    "name":"Mug",
+                    "locale":"en_US"
+                }
+        }
+}

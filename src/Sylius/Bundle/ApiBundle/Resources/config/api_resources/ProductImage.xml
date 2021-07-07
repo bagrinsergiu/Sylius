@@ -36,5 +36,6 @@
 
         <property name="id" identifier="true" writable="false" />
         <property name="path" required="true" />
+        <property name="type" />
     </resource>
 </resources>

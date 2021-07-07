@@ -55,11 +55,21 @@ final class ChosenShippingMethodEligibilityValidator extends ConstraintValidator
 
         /** @var ShippingMethodInterface|null $shippingMethod */
         $shippingMethod = $this->shippingMethodRepository->findOneBy(['code' => $value->shippingMethodCode]);
-        Assert::notNull($shippingMethod);
+        if (null === $shippingMethod) {
+            $this->context->addViolation($constraint->notFoundMessage, ['%code%' => $value->shippingMethodCode]);
+
+            return;
+        }
 
         /** @var ShipmentInterface|null $shipment */
         $shipment = $this->shipmentRepository->find($value->shipmentId);
         Assert::notNull($shipment);
+
+        $order = $shipment->getOrder();
+
+        if ($order->getShippingAddress() === null) {
+            $this->context->addViolation($constraint->shippingAddressNotFoundMessage);
+        }
 
         if (!in_array($shippingMethod, $this->shippingMethodsResolver->getSupportedMethods($shipment), true)) {
             $this->context->addViolation($constraint->message, ['%name%' => $shippingMethod->getName()]);

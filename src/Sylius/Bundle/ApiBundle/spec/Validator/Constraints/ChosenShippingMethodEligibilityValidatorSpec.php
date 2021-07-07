@@ -13,21 +13,17 @@ declare(strict_types=1);
 
 namespace spec\Sylius\Bundle\ApiBundle\Validator\Constraints;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Bundle\ApiBundle\Command\Checkout\ChooseShippingMethod;
 use Sylius\Bundle\ApiBundle\Command\Checkout\CompleteOrder;
-use Sylius\Bundle\ApiBundle\Command\OrderTokenValueAwareInterface;
 use Sylius\Bundle\ApiBundle\Validator\Constraints\ChosenShippingMethodEligibility;
-use Sylius\Bundle\ApiBundle\Validator\Constraints\OrderShippingMethodEligibility;
+use Sylius\Component\Core\Model\AddressInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\ShipmentInterface;
 use Sylius\Component\Core\Model\ShippingMethodInterface;
-use Sylius\Component\Core\Repository\OrderRepositoryInterface;
 use Sylius\Component\Core\Repository\ShipmentRepositoryInterface;
 use Sylius\Component\Core\Repository\ShippingMethodRepositoryInterface;
-use Sylius\Component\Shipping\Checker\Eligibility\ShippingMethodEligibilityCheckerInterface;
 use Sylius\Component\Shipping\Resolver\ShippingMethodsResolverInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
@@ -55,7 +51,8 @@ final class ChosenShippingMethodEligibilityValidatorSpec extends ObjectBehavior
     {
         $this
             ->shouldThrow(\InvalidArgumentException::class)
-            ->during('validate', [new ChooseShippingMethod('SHIPPING_METHOD_CODE'), new class() extends Constraint {}])
+            ->during('validate', [new ChooseShippingMethod('SHIPPING_METHOD_CODE'), new class() extends Constraint {
+            }])
         ;
     }
 
@@ -74,7 +71,9 @@ final class ChosenShippingMethodEligibilityValidatorSpec extends ObjectBehavior
         ExecutionContextInterface $executionContext,
         ShippingMethodInterface $shippingMethod,
         ShippingMethodInterface $differentShippingMethod,
-        ShipmentInterface $shipment
+        ShipmentInterface $shipment,
+        OrderInterface $order,
+        AddressInterface $shippingAddress
     ): void {
         $command = new ChooseShippingMethod('SHIPPING_METHOD_CODE');
         $command->setOrderTokenValue('ORDER_TOKEN');
@@ -84,6 +83,10 @@ final class ChosenShippingMethodEligibilityValidatorSpec extends ObjectBehavior
         $shippingMethod->getName()->willReturn('DHL');
 
         $shipmentRepository->find('123')->willReturn($shipment);
+
+        $shipment->getOrder()->willReturn($order);
+
+        $order->getShippingAddress()->willReturn($shippingAddress);
 
         $shippingMethodsResolver->getSupportedMethods($shipment)->willReturn([$differentShippingMethod]);
 
@@ -101,7 +104,9 @@ final class ChosenShippingMethodEligibilityValidatorSpec extends ObjectBehavior
         ShippingMethodsResolverInterface $shippingMethodsResolver,
         ExecutionContextInterface $executionContext,
         ShippingMethodInterface $shippingMethod,
-        ShipmentInterface $shipment
+        ShipmentInterface $shipment,
+        OrderInterface $order,
+        AddressInterface $shippingAddress
     ): void {
         $command = new ChooseShippingMethod('SHIPPING_METHOD_CODE');
         $command->setOrderTokenValue('ORDER_TOKEN');
@@ -110,6 +115,11 @@ final class ChosenShippingMethodEligibilityValidatorSpec extends ObjectBehavior
         $shippingMethodRepository->findOneBy(['code' => 'SHIPPING_METHOD_CODE'])->willReturn($shippingMethod);
 
         $shipmentRepository->find('123')->willReturn($shipment);
+
+
+        $shipment->getOrder()->willReturn($order);
+
+        $order->getShippingAddress()->willReturn($shippingAddress);
 
         $shippingMethodsResolver->getSupportedMethods($shipment)->willReturn([$shippingMethod]);
 
@@ -121,7 +131,7 @@ final class ChosenShippingMethodEligibilityValidatorSpec extends ObjectBehavior
         $this->validate($command, new ChosenShippingMethodEligibility());
     }
 
-    function it_throws_an_exception_if_given_shipping_method_is_null(
+    function it_adds_a_violation_if_given_shipping_method_is_null(
         ShipmentRepositoryInterface $shipmentRepository,
         ShippingMethodRepositoryInterface $shippingMethodRepository,
         ExecutionContextInterface $executionContext
@@ -137,11 +147,44 @@ final class ChosenShippingMethodEligibilityValidatorSpec extends ObjectBehavior
             ->addViolation('sylius.shipping_method.not_available', Argument::any())
             ->shouldNotBeCalled()
         ;
-
-        $this
-            ->shouldThrow(\InvalidArgumentException::class)
-            ->during('validate', [$command, new ChosenShippingMethodEligibility()])
+        $executionContext
+            ->addViolation('sylius.shipping_method.not_found', ['%code%' => 'SHIPPING_METHOD_CODE'])
+            ->shouldBeCalled()
         ;
+
+        $this->validate($command, new ChosenShippingMethodEligibility());
+    }
+
+    function it_adds_violation_if_order_is_not_addressed(
+        ShipmentRepositoryInterface $shipmentRepository,
+        ShippingMethodRepositoryInterface $shippingMethodRepository,
+        ShippingMethodsResolverInterface $shippingMethodsResolver,
+        ExecutionContextInterface $executionContext,
+        ShippingMethodInterface $shippingMethod,
+        ShipmentInterface $shipment,
+        OrderInterface $order,
+        AddressInterface $shippingAddress
+    ): void {
+        $command = new ChooseShippingMethod('SHIPPING_METHOD_CODE');
+        $command->setOrderTokenValue('ORDER_TOKEN');
+        $command->setSubresourceId('123');
+
+        $shippingMethodRepository->findOneBy(['code' => 'SHIPPING_METHOD_CODE'])->willReturn($shippingMethod);
+
+        $shipmentRepository->find('123')->willReturn($shipment);
+
+        $shipment->getOrder()->willReturn($order);
+
+        $order->getShippingAddress()->willReturn(null);
+
+        $shippingMethodsResolver->getSupportedMethods($shipment)->willReturn([$shippingMethod]);
+
+        $executionContext
+            ->addViolation('sylius.shipping_method.shipping_address_not_found')
+            ->shouldBeCalled()
+        ;
+
+        $this->validate($command, new ChosenShippingMethodEligibility());
     }
 
     function it_throws_an_exception_if_given_shipmnent_is_null(

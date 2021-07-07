@@ -203,7 +203,8 @@ final class OrderContext implements Context
             $orderElementState,
             StringInflector::codeToName(
                 $this->responseChecker->getValue(
-                    $this->client->getLastResponse(), $elementType . 'State'
+                    $this->client->getLastResponse(),
+                    $elementType . 'State'
                 )
             )
         );
@@ -296,6 +297,14 @@ final class OrderContext implements Context
     public function iShouldNotBeAbleToSeeThatOrder(): void
     {
         Assert::false($this->responseChecker->isShowSuccessful($this->client->getLastResponse()));
+    }
+
+    /**
+     * @Then I should be denied an access to order list
+     */
+    public function iShouldDeniedAnAccessToOrderList(): void
+    {
+        Assert::true($this->responseChecker->hasAccessDenied($this->client->getLastResponse()));
     }
 
     /**

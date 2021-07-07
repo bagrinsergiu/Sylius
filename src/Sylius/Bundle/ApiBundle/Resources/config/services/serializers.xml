@@ -41,6 +41,14 @@
             <argument type="service" id="sylius.calculator.product_variant_price" />
             <argument type="service" id="sylius.context.channel" />
             <argument type="service" id="sylius.availability_checker" />
+            <argument type="service" id="sylius.section_resolver.uri_based_section_resolver" />
+            <tag name="serializer.normalizer" priority="64" />
+        </service>
+
+        <service id="Sylius\Bundle\ApiBundle\Serializer\ShippingMethodNormalizer">
+            <argument type="service" id="sylius.repository.order" />
+            <argument type="service" id="sylius.repository.shipment" />
+            <argument type="service" id="sylius.registry.shipping_calculator" />
             <tag name="serializer.normalizer" priority="64" />
         </service>
     </services>

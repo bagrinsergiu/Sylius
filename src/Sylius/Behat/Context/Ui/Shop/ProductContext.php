@@ -131,6 +131,14 @@ final class ProductContext implements Context
     }
 
     /**
+     * @Then I should see the product description :description
+     */
+    public function iShouldSeeTheProductDescription(string $description): void
+    {
+        Assert::same($this->showPage->getDescription(), $description);
+    }
+
+    /**
      * @When I open page :url
      */
     public function iOpenPage($url)
@@ -275,6 +283,30 @@ final class ProductContext implements Context
     }
 
     /**
+     * @Then I should see in taxon :taxon in the store products :firstProductName and :secondProductName
+     */
+    public function iShouldSeeInTaxonInTheStoreProducts(TaxonInterface $taxon, string ...$productNames): void
+    {
+        $this->iCheckListOfProductsForTaxon($taxon);
+
+        foreach ($productNames as $productName) {
+            Assert::true($this->indexPage->isProductOnList($productName));
+        }
+    }
+
+    /**
+     * @Then I should not see in taxon :taxon in the store products :firstProductName and :secondProductName
+     */
+    public function iShouldNotSeeInTaxonInTheStoreProducts(TaxonInterface $taxon, string ...$productNames): void
+    {
+        $this->iCheckListOfProductsForTaxon($taxon);
+
+        foreach ($productNames as $productName) {
+            Assert::false($this->indexPage->isProductOnList($productName));
+        }
+    }
+
+    /**
      * @Then I should see empty list of products
      */
     public function iShouldSeeEmptyListOfProducts()
@@ -327,9 +359,9 @@ final class ProductContext implements Context
     }
 
     /**
-     * @When I set its :optionName to :optionValue
+     * @When I select its :optionName as :optionValue
      */
-    public function iSetItsOptionTo($optionName, $optionValue)
+    public function iSelectItsOptionAs(string $optionName, string $optionValue): void
     {
         $this->showPage->selectOption($optionName, $optionValue);
     }

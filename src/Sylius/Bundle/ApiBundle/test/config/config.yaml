@@ -14,6 +14,9 @@ api_platform:
             - '%kernel.api_bundle_path%/Resources/config/api_resources'
             - '%kernel.project_dir%/config/api_resources'
 
+sylius_api:
+    enabled: '%env(bool:SYLIUS_API_ENABLED)%'
+
 framework:
     assets: ~
     secret: "ch4mb3r0f5ecr3ts"
@@ -72,3 +75,9 @@ sylius_resource:
         test.foo_sylius_resource:
             classes:
                 model: Sylius\Bundle\ApiBundle\Application\Entity\FooSyliusResource
+
+services:
+    test.channel.id_filter:
+        parent: api_platform.doctrine.orm.search_filter
+        arguments: [{id: 'exact', hostname: 'partial'}]
+        tags: ['api_platform.filter']

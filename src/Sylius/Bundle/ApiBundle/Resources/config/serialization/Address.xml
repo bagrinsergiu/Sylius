@@ -22,12 +22,11 @@
         </attribute>
         <attribute name="customer">
             <group>admin:address:read</group>
-            <group>shop:address:create</group>
-            <group>shop:address:update</group>
         </attribute>
         <attribute name="firstName">
             <group>admin:address:read</group>
             <group>admin:order:read</group>
+            <group>shop:address:create</group>
             <group>shop:address:read</group>
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
@@ -38,6 +37,7 @@
         <attribute name="lastName">
             <group>admin:address:read</group>
             <group>admin:order:read</group>
+            <group>shop:address:create</group>
             <group>shop:address:read</group>
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
@@ -47,17 +47,20 @@
         </attribute>
         <attribute name="phoneNumber">
             <group>admin:address:read</group>
+            <group>shop:address:create</group>
             <group>shop:address:read</group>
             <group>shop:address:update</group>
         </attribute>
         <attribute name="company">
             <group>admin:address:read</group>
+            <group>shop:address:create</group>
             <group>shop:address:read</group>
             <group>shop:address:update</group>
         </attribute>
         <attribute name="city">
             <group>admin:address:read</group>
             <group>admin:order:read</group>
+            <group>shop:address:create</group>
             <group>shop:address:read</group>
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
@@ -68,6 +71,7 @@
         <attribute name="street">
             <group>admin:address:read</group>
             <group>admin:order:read</group>
+            <group>shop:address:create</group>
             <group>shop:address:read</group>
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
@@ -78,6 +82,7 @@
         <attribute name="postcode">
             <group>admin:address:read</group>
             <group>admin:order:read</group>
+            <group>shop:address:create</group>
             <group>shop:address:read</group>
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
@@ -88,6 +93,7 @@
         <attribute name="countryCode">
             <group>admin:address:read</group>
             <group>admin:order:read</group>
+            <group>shop:address:create</group>
             <group>shop:address:read</group>
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
@@ -97,6 +103,7 @@
         </attribute>
         <attribute name="provinceCode">
             <group>admin:address:read</group>
+            <group>shop:address:create</group>
             <group>shop:address:read</group>
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
@@ -107,6 +114,7 @@
         <attribute name="provinceName">
             <group>admin:address:read</group>
             <group>admin:order:read</group>
+            <group>shop:address:create</group>
             <group>shop:address:read</group>
             <group>shop:address:update</group>
             <group>shop:cart:address</group>
